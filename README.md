@@ -12,9 +12,6 @@ Devices used:
 - Water pump
 - Mini float switch
 
-Code (replacements):
-const char* WIFI_SSID  = "SSID";
-const char* WIFI_PASSWORD = "password";
-const char* FIREBASE_HOST = "Database link";
 
-APP
+
+
