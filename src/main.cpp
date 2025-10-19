@@ -20,11 +20,11 @@ const int SOLO_UMIDO_BRUTO = 1350; // Valor lido quando o sensor está submerso 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_RST);
 
 // Credenciais Wi-Fi
-const char* WIFI_SSID  = "Paradiso";
-const char* WIFI_PASSWORD = "8167350Rm";
+const char* WIFI_SSID  = "SSID";
+const char* WIFI_PASSWORD = "password";
 
 // Firebase HTTPS
-const char* FIREBASE_HOST = "tca-autoplant-default-rtdb.firebaseio.com/";
+const char* FIREBASE_HOST = "Database link";
 String databaseURL = "https://" + String(FIREBASE_HOST);
 
 #define DHTPIN 5
