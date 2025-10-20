@@ -5,12 +5,10 @@
 #include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ILI9341.h>
-#include "image.h"  // Certifique-se de que este arquivo existe (seu array de imagem)
+#include "image.h"  
 
-// --- CONSTANTES DE CALIBRAÇÃO E HARDWARE ---
-// Calibração do Sensor de Umidade do soil (Lembre-se: O mapeamento é inverso)
-const int Soil_Dry = 2600;  // Valor lido quando o sensor está seco (0% umidade)
-const int Soil_Humid = 1350; // Valor lido quando o sensor está submerso (100% umidade)
+const int Soil_Dry = 2600;  
+const int Soil_Humid = 1350;
 
 // Pinos TFT
 #define TFT_DC 26
@@ -29,14 +27,12 @@ String databaseURL = "https://" + String(FIREBASE_HOST);
 #define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
-
 #define sensor_soil 36
 #define bomba 27
 #define potenci_r 34
 #define potenci_v 35 
 #define FloatSensor 14
 #define button 13
-
 
 bool Water = 0;
 String WaterS;
