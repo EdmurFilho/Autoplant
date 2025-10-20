@@ -179,7 +179,7 @@ void loop() {
   }
 }
 
-void Soil_value() {
+void Soil_value(){
     soilBruto = analogRead(sensor_soil);
     float soil_map = map(soilBruto, Soil_Dry, Soil_Humid, 0, 100);
     soil = constrain(soil_map, 0.00, 100.00); 
@@ -260,7 +260,7 @@ void update(){
   Serial.printf("Values: Temp=%.2fC, soil=%.2f%%, Water=%d\n", Temp, soil, WaterS);
 
   // Upload temperature
-  String urlPutTemp = databaseURL + "/Ambiente1/Temp.json";
+  String urlPutTemp = databaseURL + "/enviroment1/Temp.json";
   Serial.println("Trying to send the Temperature...");
   if (https.begin(client, urlPutTemp)) {
     https.addHeader("Content-Type", "application/json");            
@@ -271,7 +271,7 @@ void update(){
   }
 
   // Upload soil humidity
-  String urlPutsoil = databaseURL + "/Ambiente1/soil.json";
+  String urlPutsoil = databaseURL + "/enviroment1/soil.json";
   Serial.println("Trying to send the soil humidity...");
   if (https.begin(client, urlPutsoil)) {
     https.addHeader("Content-Type", "application/json");            
@@ -290,7 +290,7 @@ void warning(){
   WaterS = Water ? "true" : "false";
 
   // Upload water sensor
-  String urlPutWater = databaseURL + "/Ambiente1/Water.json";
+  String urlPutWater = databaseURL + "/enviroment1/Water.json";
   Serial.println("Trying to send the water level...");
   if (https.begin(client, urlPutWater)) {
     https.addHeader("Content-Type", "application/json");            
@@ -346,7 +346,7 @@ void WateringParameters(){
   vol = map(volR, 0, 4095, 1, 10);
 
   // GET cycles from Firebase
-  String urlGetcycles = databaseURL + "/Ambiente1/cycles.json";
+  String urlGetcycles = databaseURL + "/enviroment1/cycles.json";
   Serial.println("Trying to get 'cycles' from Firebase...");  
   if (https.begin(client, urlGetcycles)) {
     int httpCode = https.GET();
@@ -364,7 +364,7 @@ void WateringParameters(){
     Serial.println("FAIL to get cycles.");
   }
     // GET Volume from Firebase
-  String urlGetVolume = databaseURL + "/Ambiente1/Vol.json";
+  String urlGetVolume = databaseURL + "/enviroment1/Vol.json";
   Serial.println("Trying to get 'volume' from Firebase...");    
   if (https.begin(client, urlGetVolume)) {
     int httpCode = https.GET();
@@ -414,7 +414,7 @@ void ReVsend(){
   if(RegS != cyc){
     RegS = cyc;
     // PUT cycles
-    String urlPutcycles = databaseURL + "/Ambiente1/cycles.json";
+    String urlPutcycles = databaseURL + "/enviroment1/cycles.json";
     Serial.printf("trying PUT [cycles] : %d...\n", RegS);
     if (https.begin(client, urlPutcycles)) {
       https.addHeader("Content-Type", "application/json");
@@ -430,7 +430,7 @@ void ReVsend(){
     if(VolS != vol){
     VolS = vol;
     // PUT Volume
-    String urlPutVolume = databaseURL + "/Ambiente1/Vol.json";
+    String urlPutVolume = databaseURL + "/enviroment1/Vol.json";
     Serial.printf("trying PUT [Vol] : %d...\n", VolS);
     if (https.begin(client, urlPutVolume)) {
         https.addHeader("Content-Type", "application/json");
