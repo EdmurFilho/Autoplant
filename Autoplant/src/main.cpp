@@ -17,7 +17,7 @@ const int Soil_Humid = 1350;
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_RST);
 
-const char* WIFI_SSID  = "Network name";
+const char* WIFI_SSID  = "Network name(SSID)";
 const char* WIFI_PASSWORD = "Password";
 
 const char* FIREBASE_HOST = "firebase database URL";
