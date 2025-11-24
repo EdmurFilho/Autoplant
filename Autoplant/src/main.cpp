@@ -17,10 +17,10 @@ const int Soil_Humid = 1350;
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_RST);
 
-const char* WIFI_SSID  = "Network name (SSID)";
-const char* WIFI_PASSWORD = "Password";
+const char* WIFI_SSID  = "AUTOPLANT";
+const char* WIFI_PASSWORD = "12345678";
 
-const char* FIREBASE_HOST = "firebase database URL";
+const char* FIREBASE_HOST = "tca-autoplant-default-rtdb.firebaseio.com/";
 String databaseURL = "https://" + String(FIREBASE_HOST);
 
 #define DHTPIN 5
@@ -81,12 +81,13 @@ void Soil_value();
 void setup() {
   pinMode(bomba, OUTPUT);         
   pinMode(button, INPUT_PULLUP);  
-  pinMode(4,OUTPUT);
+  pinMode(16,OUTPUT);
   pinMode(sensor_soil, INPUT);
   pinMode(potenci_r, INPUT);
   pinMode(potenci_v, INPUT);
+  pinMode(FloatSensor, INPUT);
   digitalWrite(bomba, LOW);
-
+  
   Serial.begin(115200);
   Serial.println("\n--- SETUP Begin ---");
 
@@ -298,9 +299,9 @@ void warning(){
 
   rep = 10;
   while (rep > 0){
-  digitalWrite(4,1);
+  digitalWrite(16,1);
   delay(200);
-  digitalWrite(4,0);
+  digitalWrite(16,0);
   delay(200);
   rep --;
   }
@@ -311,7 +312,7 @@ void regar(){
   digitalWrite(4,1);
   delay(400);
   digitalWrite(4,0);
-  Water = !digitalRead(FloatSensor);
+  Water = digitalRead(FloatSensor);
   if(Water){ 
     Serial.printf("Water level: OK. Turning pump on %d ms.\n", wateringDurantion);
     digitalWrite(bomba,1); 
@@ -325,7 +326,7 @@ void regar(){
     warning();
     while (!Water){ 
       Serial.println("waiting for water replenish...");
-      Water = !digitalRead(FloatSensor);
+      Water = digitalRead(FloatSensor);
       delay(500);
     }
     Serial.println("water replenished!");
