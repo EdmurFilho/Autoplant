@@ -254,7 +254,7 @@ void update(){
   // RESTAURADO: Atualiza o último valor registrado antes do envio
   pastsoil = soil; 
   
-  Serial.printf("Values: Temp=%.2fC, soil=%.2f%%, Water=%d\n", Temp, soil, WaterS);
+  Serial.printf("Values: Temp=%.2fC, soil=%.2f%%, Water=%d\n", Temp, soil, Water);
 
   // Upload temperature
   String urlPutTemp = databaseURL + "/enviroment1/Temp.json";
